@@ -1,7 +1,8 @@
+//JUEGO VERSION 1.0
 function piedraPapelTijera() {
     var input
     while (true) {
-        if (!(input = prompt("Elige piedra, papel o tijera para empezar"))) {
+        if (!(input = prompt("Elige Piedra, Papel o Tijera para empezar"))) {
             alert("Ingresa una opcion válida")
         }
         else if (input) {
@@ -58,33 +59,63 @@ function piedraPapelTijera() {
         }
     }
 }
-/*
-swal("Comenzamos el juego!","Elige piedra papel o tijera?", {
-    buttons: {
-      piedra: "Piedra",
-      papel: {
-        text: "Papel",
-        value: "papel",
-      },
-      tijera: {
-          text: "Tijera",
-          value: "tijera",
-      },
-    },
-  })
-  .then((value) => {
-    switch (value) {
-   
-      case "piedra":
-        swal("Bien!", "Elegiste Piedra", "success");
-        break;
-   
-      case "papel":
-        swal("Bien!", "Elegiste Papel", "success");
-        break;
-   
-        case "tijera" :
-        swal("Bien!", "Elegiste Tijera", "success");
-          break
-    }
-  });*/
+//JUEGO VERSION 2.0
+function JugarPiedraPapelOTijera() {
+    swal("Okey, empecemos con el juego!", "Elegí una opción para empezar", "success", {
+        buttons: {
+            piedra: {
+                text: "Piedra",
+                value: "piedra",
+            },
+            papel: {
+                text: "Papel",
+                value: "papel",
+            },
+            tijera: {
+                text: "Tijera",
+                value: "tijera",
+            },
+        },
+    })
+        .then((value) => {
+            var turnoCompu = [
+                "Piedra",
+                "Papel",
+                "Tijera"
+            ]
+            var randomNumber = Math.floor(Math.random() * 3)
+            var turnoRandom = turnoCompu[randomNumber]
+            var turnoRandomLowerCase = turnoRandom.toLowerCase()
+            switch (value) {
+                case "piedra":
+                    if (value === turnoRandomLowerCase) {
+                        swal("Oh, elegiste Piedra!", "Y la compu eligió " + turnoRandom + ", entonces: Es un empate!", "warning")
+                    } else if (turnoRandomLowerCase === "tijera") {
+                        swal("Bien, elegiste Piedra!", "Y la compu eligió " + turnoRandom + ", entonces: Ganaste buhhh!", "success")
+                    } else if (turnoRandomLowerCase === "papel") {
+                        swal("Mal, elegiste Piedra!", "Y la compu eligió " + turnoRandom + ", entonces: Perdiste jaja", "error")
+                    }
+                    break;
+                case "papel":
+                    if (value === turnoRandomLowerCase) {
+                        swal("Oh, elegiste Papel!", "Y la compu eligió " + turnoRandom + ", entonces: Es un empate!", "warning")
+                    } else if (turnoRandomLowerCase === "piedra") {
+                        swal("Bien, elegiste Papel!", "Y la compu eligió " + turnoRandom + ", entonces: Ganaste buhhh!", "success")
+                    } else if (turnoRandomLowerCase === "tijera") {
+                        swal("Mal, elegiste Papel!", "Y la compu eligió " + turnoRandom + ", entonces: Perdiste jaja", "error")
+                    }
+                    break;
+                case "tijera":
+                    if (value === turnoRandomLowerCase) {
+                        swal("Oh, elegiste Tijera!", "Y la compu eligió " + turnoRandom + ", entonces: Es un empate!", "warning")
+                    } else if (turnoRandomLowerCase === "papel") {
+                        swal("Bien, elegiste Tijera!", "Y la compu eligió " + turnoRandom + ", entonces: Ganaste buhhh!", "success")
+                    } else if (turnoRandomLowerCase === "piedra") {
+                        swal("Mal, elegiste Tijera!", "Y la compu eligió " + turnoRandom + ", entonces: Perdiste jaja", "error")
+                    }
+                    break;
+                default:
+                    swal("Nope!", "Elegí una opción", "error");
+            }
+        });
+}
